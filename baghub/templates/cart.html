@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">My Shop</a>
+            <a href="{% url 'product_listing' %}" class="btn btn-light">Continue Shopping</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>Shopping Cart</h1>
+
+        <!-- Cart Items -->
+        {% if cart_items %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>${{ item.product.price }}</td>
+                            <td>${{ item.total_price }}</td>
+                            <td>
+                                <form action="{% url 'remove_from_cart' item.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Cart Total -->
+            <div class="text-end">
+                <h4>Total: ${{ cart_total }}</h4>
+            </div>
+
+            <div class="text-end">
+                <a href="{% url 'order_confirmation' %}" class="btn btn-primary">Proceed to Checkout</a>
+            </div>
+        {% else %}
+            <p class="text-center">Your cart is empty.</p>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

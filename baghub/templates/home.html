@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BAG HUB - Home</title>
+    
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- Header -->
+<header class="bg-dark text-white py-3">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="h3">BAG HUB</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a href="{% url 'index' %}" class="nav-link text-white"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li class="nav-item"><a href="{% url 'product_listing' %}" class="nav-link text-white"><i class="fa-solid fa-suitcase"></i> Product</a></li>
+                    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link text-white"><i class="fa-solid fa-address-card"></i> About</a></li>
+
+                    {% if user.is_authenticated %}
+                        <!-- Show Cart and Logout links for authenticated users -->
+                        <li class="nav-item"><a href="{% url 'cart_view' %}" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+                        <li class="nav-item"><a href="{% url 'custom_logout' %}" class="btn btn-danger"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+                    {% else %}
+                        <!-- Show Login link for unauthenticated users -->
+                        <li class="nav-item"><a href="{% url 'login1' %}" class="nav-link text-white"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero text-center text-white" style="background-image: url({% static 'images/bagbackg.jpg' %}); background-size: cover; background-position: center; height: 70vh; display: flex; justify-content: center; align-items: center;">
+    <div class="container">
+        <h1 class="display-4">Stylish Bags for Every Occasion</h1>
+        <p class="lead">Find the perfect bag for your lifestyle</p>
+        <a href="{% url 'product_listing' %}" class="btn btn-primary btn-lg">Shop Now</a>
+    </div>
+</section>
+
+<!-- Product Section -->
+<section class="product-section py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Featured Bags</h2>
+        <div class="row">
+            <!-- Product 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/bag6-1.png' %}" class="card-img-top" alt="Bag 1">
+                    <div class="card-body">
+                        <h3 class="card-title">Leather Handbag</h3>
+                        <p class="card-text">$120.00</p>
+                        <a href="#" class="btn btn-dark">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/bag2.jpeg' %}" class="card-img-top" alt="Bag 2">
+                    <div class="card-body">
+                        <h3 class="card-title">Classic Tote</h3>
+                        <p class="card-text">$85.00</p>
+                        <a href="#" class="btn btn-dark">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'images/bag4.jpeg' %}" class="card-img-top" alt="Bag 3">
+                    <div class="card-body">
+                        <h3 class="card-title">Travel Backpack</h3>
+                        <p class="card-text">$95.00</p>
+                        <a href="#" class="btn btn-dark">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-3">
+    <div class="container text-center">
+        <p>&copy; 2024 Bags Hub. All Rights Reserved.</p>
+    </div>
+</footer>
+<script src="https://kit.fontawesome.com/05b83a09d1.js" crossorigin="anonymous"></script>
+<!-- Bootstrap 5 JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93q10M9pvYoN8AqZfu0iItdkLl4O1p5gmi9iBlYEB4TqLA6c1JJUp5Nz3Pp9F8" crossorigin="anonymous"></script>
+
+</body>
+</html>

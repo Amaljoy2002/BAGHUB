@@ -1,0 +1,37 @@
+/* Navbar styling */
+header {
+    background-color: #333; /* Dark background */
+    color: #fff;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 2rem; /* Larger brand name */
+}
+
+.navbar-nav {
+    display: flex;
+    margin-left: auto;  /* This aligns the nav items to the right */
+}
+
+.nav-item {
+    margin-left: 15px; /* Space between links */
+}
+
+.nav-link {
+    color: #fff !important; /* Ensure text is white */
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #f0a500 !important; /* Gold hover color */
+}
+
+/* Navbar on smaller screens */
+.navbar-toggler-icon {
+    background-color: #fff;
+}
+
